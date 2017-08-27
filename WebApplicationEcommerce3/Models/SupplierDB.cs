@@ -9,7 +9,7 @@ namespace WebApplicationEcommerce3.Models
 {
     public class SupplierDB
     {
-        String cs = ConfigurationManager.ConnectionStrings["WebShopDB"].ConnectionString;
+        String cs = ConfigurationManager.ConnectionStrings["mydb"].ConnectionString;
 
         public List<Supplier> GetAllSupplier()
         {

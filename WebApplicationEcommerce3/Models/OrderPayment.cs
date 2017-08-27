@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApplicationEcommerce3.Controllers.Models
 {
-    public class OfferPayment
+    public class OrderPayment
     {
         public int OPId { get; set; }
         public int OrderId { get; set; }

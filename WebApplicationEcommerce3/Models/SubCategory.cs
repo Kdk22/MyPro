@@ -10,5 +10,6 @@ namespace WebApplicationEcommerce3.Models
         public int SubCategoryId { get; set; }
         public string SubCatName { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
     }
 }

@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="~/Scripts/Order.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h2>Order</h2>
+    <div id="SearchOrder">
+        <input id="SearchTxt" value="Search Order" type="text" /><input id="SearchBtn" type="button" value="Search" onclick="SearchByName()" />
+    </div>
+    <div>
+        <table id="tblOrder" border="0" cellpadding="0" cellspacing="0">
+            <tbody class="tbody"></tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Order</button><br /><br />
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">&times;</span></button>*@
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Add Order</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        @*<div class="form-group">
+                                <label for="EmployeeId">ID</label>
+                                <input type="text" class="form-control" id="EmployeeID" placeholder="Id" disabled="disabled" />
+                            </div>*@
+                        <div class="form-group">
+                            <label for="CustomerId">CustomerId</label>
+                            <input type="text" class="form-control" id="CustomerId" placeholder="CustomerId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="AddressId">AddressId</label>
+                            <input type="text" class="form-control" id="AddressId" placeholder="AddressId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="DeliveryCharge">DeliveryCharge</label>
+                            <input type="text" class="form-control" id="DeliveryCharge" placeholder="DeliveryCharge" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Discount">Discount</label>
+                            <input type="text" class="form-control" id="Discount" placeholder="Discount" />
+                        </div>
+                        <div class="form-group">
+                            <label for="TaxAmount">TaxAmount</label>
+                            <input type="text" class="form-control" id="TaxAmount" placeholder="TaxAmount" />
+                        </div>  
+                        <div class="form-group">
+                            <label for="NetAmount">NetAmount</label>
+                            <input type="text" class="form-control" id="NetAmount" placeholder="NetAmount" />
+                        </div>
+                        <div class="form-group">
+                            <label for="OrderDate">OrderDate</label>
+                            <input type="text" class="form-control" id="OrderDate" placeholder="OrderDate" />
+                        </div>
+
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="HdnOrderId" value="0" />
+</body>
+</html>
+

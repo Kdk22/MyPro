@@ -225,48 +225,51 @@ function Delele(ProductId) {
     }
 }
 function SearchByName() {
+    var inp = $("#SearchTxt");
     var ProductObj = {
         ProductName: $('#SearchTxt').val()
     }
-    $.ajax({
-        url: "/Products/Search",
-        data: JSON.stringify(ProductObj),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            console.log("here");
-            var html = '';
-            var sno = 1;
-            html = "<colgroup><col width='5%'/><col width='0%'/><col width='0%'/></colgroup><thead><tr><th> S.N. </th><th> ProductId </th><<th> CategoryId </th><th> SubCategoryId </th><th> SupplierId </th><th> Product Name </th><th> Purchase Price </th><th> Sales Price </th><th> Quantity </th><th> ReorderLevel </th><th> Discount Available </th><th> Stock </th><th> Color </th><th> Size </th><th> Other1 </th><th> Other2 </th><th> Image </th><th> </th><th> </th></tr></thead>";
-            html += "<tbody>";
-            $.each(result, function (key, item) {
-                html += '<tr>';
-                html += "<td>" + sno++ + ".</td>";
-                html += '<td> ' + item.ProductId + '</td> ';
-                html += '<td> ' + item.CategoryId + '</td> ';
-                html += '<td> ' + item.SubCategoryId + '</td> ';
-                html += '<td> ' + item.SupplierId + '</td> ';
-                html += '<td> ' + item.ProductName + '</td> ';
-                html += '<td> ' + item.PurchasePrice + '</td> ';
-                html += '<td> ' + item.SalesPrice + '</td> ';
-                html += '<td> ' + item.Quantity + '</td> ';
-                html += '<td> ' + item.ReorderLevel + '</td> ';
-                html += '<td> ' + item.DiscountAvailable + '</td> ';
-                html += '<td> ' + item.Stock + '</td> ';
-                html += '<td> ' + item.Color + '</td> ';
-                html += '<td> ' + item.Size + '</td> ';
-                html += '<td>' + item.Other1 + '</td>';
-                html += '<td>' + item.Other2 + '</td>';
-                html += '<td> ' + item.Image + '</td> ';
-                html += '<td><a href="#" onclick="return GetbyID(' + item.ProductId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.ProductId + ')">Delete</a></td>';
-                html += '</tr > ';
-            });
-            $('.tbody').html(html);
-            //  html += "</tbody>";
-        },
-    });
-}    
+    if (inp.val().length > 0) {
+        $.ajax({
+            url: "/Products/Search",
+            data: JSON.stringify(ProductObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                console.log("here");
+                var html = '';
+                var sno = 1;
+                html = "<colgroup><col width='5%'/><col width='0%'/><col width='0%'/></colgroup><thead><tr><th> S.N. </th><th> ProductId </th><<th> CategoryId </th><th> SubCategoryId </th><th> SupplierId </th><th> Product Name </th><th> Purchase Price </th><th> Sales Price </th><th> Quantity </th><th> ReorderLevel </th><th> Discount Available </th><th> Stock </th><th> Color </th><th> Size </th><th> Other1 </th><th> Other2 </th><th> Image </th><th> </th><th> </th></tr></thead>";
+                html += "<tbody>";
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += "<td>" + sno++ + ".</td>";
+                    html += '<td> ' + item.ProductId + '</td> ';
+                    html += '<td> ' + item.CategoryId + '</td> ';
+                    html += '<td> ' + item.SubCategoryId + '</td> ';
+                    html += '<td> ' + item.SupplierId + '</td> ';
+                    html += '<td> ' + item.ProductName + '</td> ';
+                    html += '<td> ' + item.PurchasePrice + '</td> ';
+                    html += '<td> ' + item.SalesPrice + '</td> ';
+                    html += '<td> ' + item.Quantity + '</td> ';
+                    html += '<td> ' + item.ReorderLevel + '</td> ';
+                    html += '<td> ' + item.DiscountAvailable + '</td> ';
+                    html += '<td> ' + item.Stock + '</td> ';
+                    html += '<td> ' + item.Color + '</td> ';
+                    html += '<td> ' + item.Size + '</td> ';
+                    html += '<td>' + item.Other1 + '</td>';
+                    html += '<td>' + item.Other2 + '</td>';
+                    html += '<td> ' + item.Image + '</td> ';
+                    html += '<td><a href="#" onclick="return GetbyID(' + item.ProductId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.ProductId + ')">Delete</a></td>';
+                    html += '</tr > ';
+                });
+                $('.tbody').html(html);
+                //  html += "</tbody>";
+            },
+        });
+    }
+}
 
 function validate() {
     var isValid = true;

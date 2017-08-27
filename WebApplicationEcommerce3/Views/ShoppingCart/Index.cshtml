@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="~/Scripts/ShoppingCart.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div id="SearchShoppingCart">
+        <input id="SearchTxt" value="Search ShoppingCart" type="text" /><input id="SearchBtn" type="button" value="Search" onclick="SearchByName()" />
+    </div>
+    <div>
+        <table id="tblShoppingCart" border="0" cellpadding="0" cellspacing="0">
+            <tbody class="tbody"></tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New ShoppingCart</button><br /><br />
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">&times;</span></button>*@
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Add ShoppingCart</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        @*<div class="form-group">
+                                <label for="CartId">ID</label>
+                                <input type="text" class="form-control" id="CartId" placeholder="Id" disabled="disabled" />
+                            </div>*@
+                        <div class="form-group">
+                            <label for="ProductId">ProductId</label>
+                            <input type="text" class="form-control" id="ProductId" placeholder="CustomerId" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Date">Date</label>
+                            <input type="text" class="form-control" id="Date" placeholder="Date" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Quantity">Quantity</label>
+                            <input type="text" class="form-control" id="Quantity" placeholder="Quantity" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Price">Price</label>
+                            <input type="text" class="form-control" id="Price" placeholder="Price" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CustomerId">CustomerId</label>
+                            <input type="text" class="form-control" id="CustomerId" placeholder="CustomerId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="CategoryId">CategoryId</label>
+                            <input type="text" class="form-control" id="CategoryId" placeholder="CategoryId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="SubCategoryId">SubCategoryId</label>
+                            <input type="text" class="form-control" id="SubCategoryId" placeholder="SubCategoryId" />
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="HdnCartId" value="0" />
+</body>
+</html>
+
+

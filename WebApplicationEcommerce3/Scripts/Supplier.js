@@ -71,6 +71,7 @@ function Add() {
         DiscountType: $('#DiscountType').val(),
         GoodsType: $('#GoodsType').val(),
         DiscountAmount: $('#DiscountAmount').val(),
+        CurrentOrder: $('#CurrentOrder').val(),
         PaymentMethod: $('#PaymentMethod').val(),
         AccountNumber: $('#AccountNumber').val()
     };
@@ -151,7 +152,7 @@ function Update() {
         return false;
     }
     var SupplierObj = {
-        SupplierId: $('#SupplierId').val(),
+        SupplierId: $('#HdnSupplierId').val(),
         CompanyName: $('#CompanyName').val(),
         ContactNo1: $('#ContactNo1').val(),
         ContactNo2: $('#ContactNo2').val(),
@@ -205,7 +206,7 @@ function Update() {
 
 function Delele(SupplierId) {
     var ans = confirm("Are you sure you want to delete this Record?");
-    var url = "Supplier/Delete?SupplierId=" + SupplierId;
+    var url = "/Supplier/Delete?SupplierId=" + SupplierId;
     if (ans) {
         $.ajax({
             url: url,
@@ -221,48 +222,52 @@ function Delele(SupplierId) {
         });
     }
 }
-function SearchByName() {
+function SearchByName()
+{
+    var inp = $("#SearchTxt");
     var SupplierObj = {
         CompanyName: $('#SearchTxt').val()
     }
-    $.ajax({
-        url: "/Supplier/Search",
-        data: JSON.stringify(SupplierObj),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            console.log("here");
-            var html = '';
-            var sno = 1;
-            html = "<colgroup><col width='5%'/><col width='0%'/><col width='0%'/></colgroup><thead><tr><th> S.N. </th><th> SupplierId </th><<th> Company Name </th><th> ContactNo1 </th><th> ContactNo2 </th><th> Email Id </th><th> Address1 </th><th> Address2 </th><th> City </th><th> State </th><th> Country </th><th> DiscountType </th><th> GoodsType </th><th> DiscountAmount </th><th> CurrentOrder </th><th> PaymentMethod </th><th> AccountNumber </th><th> </th><th> </th></tr></thead>";
-            html += "<tbody>";
-            $.each(result, function (key, item) {
-                html += '<tr>';
-                html += "<td>" + sno++ + ".</td>";
-                html += '<td> ' + item.SupplierId + '</td> ';
-                html += '<td> ' + item.CompanyName + '</td> ';
-                html += '<td> ' + item.ContactNo1 + '</td> ';
-                html += '<td> ' + item.ContactNo2 + '</td> ';
-                html += '<td> ' + item.EmailId + '</td> ';
-                html += '<td> ' + item.Address1 + '</td> ';
-                html += '<td> ' + item.Address2 + '</td> ';
-                html += '<td> ' + item.City + '</td> ';
-                html += '<td> ' + item.State + '</td> ';
-                html += '<td> ' + item.Country + '</td> ';
-                html += '<td> ' + item.DiscountType + '</td> ';
-                html += '<td> ' + item.GoodsType + '</td> ';
-                html += '<td> ' + item.DiscountAmount + '</td> ';
-                html += '<td>' + item.CurrentOrder + '</td>';
-                html += '<td>' + item.PaymentMethod + '</td>';
-                html += '<td> ' + item.AccountNumber + '</td> ';
-                html += '<td><a href="#" onclick="return GetbyID(' + item.SupplierId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.SupplierId + ')">Delete</a></td>';
-                html += '</tr > ';
-            });
-            $('.tbody').html(html);
-            //  html += "</tbody>";
-        },
-    });
+    if (inp.val().length > 0) {
+        $.ajax({
+            url: "/Supplier/Search",
+            data: JSON.stringify(SupplierObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                console.log("here");
+                var html = '';
+                var sno = 1;
+                html = "<colgroup><col width='5%'/><col width='0%'/><col width='0%'/></colgroup><thead><tr><th> S.N. </th><th> SupplierId </th><<th> Company Name </th><th> ContactNo1 </th><th> ContactNo2 </th><th> Email Id </th><th> Address1 </th><th> Address2 </th><th> City </th><th> State </th><th> Country </th><th> DiscountType </th><th> GoodsType </th><th> DiscountAmount </th><th> CurrentOrder </th><th> PaymentMethod </th><th> AccountNumber </th><th> </th><th> </th></tr></thead>";
+                html += "<tbody>";
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += "<td>" + sno++ + ".</td>";
+                    html += '<td> ' + item.SupplierId + '</td> ';
+                    html += '<td> ' + item.CompanyName + '</td> ';
+                    html += '<td> ' + item.ContactNo1 + '</td> ';
+                    html += '<td> ' + item.ContactNo2 + '</td> ';
+                    html += '<td> ' + item.EmailId + '</td> ';
+                    html += '<td> ' + item.Address1 + '</td> ';
+                    html += '<td> ' + item.Address2 + '</td> ';
+                    html += '<td> ' + item.City + '</td> ';
+                    html += '<td> ' + item.State + '</td> ';
+                    html += '<td> ' + item.Country + '</td> ';
+                    html += '<td> ' + item.DiscountType + '</td> ';
+                    html += '<td> ' + item.GoodsType + '</td> ';
+                    html += '<td> ' + item.DiscountAmount + '</td> ';
+                    html += '<td>' + item.CurrentOrder + '</td>';
+                    html += '<td>' + item.PaymentMethod + '</td>';
+                    html += '<td> ' + item.AccountNumber + '</td> ';
+                    html += '<td><a href="#" onclick="return GetbyID(' + item.SupplierId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.SupplierId + ')">Delete</a></td>';
+                    html += '</tr > ';
+                });
+                $('.tbody').html(html);
+                //  html += "</tbody>";
+            },
+        });
+    }
 }
 
 function validate() {
